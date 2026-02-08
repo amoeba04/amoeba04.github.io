@@ -1,447 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
 <title>Jaesin Ahn</title>
+<meta name="description" content="Homepage of Jaesin Ahn">
+<meta name="author" content="Jaesin Ahn">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+/* Normalize (minimal) */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+html { font-size: 62.5%; }
 body {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 16px;
-  color: #333;
-  background: #fff;
-  margin: 0;
-  padding: 0;
+  font-size: 1.5em;
   line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222;
 }
-a { color: #1772d0; text-decoration: none; }
-a:hover { text-decoration: underline; }
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+h1 { font-size: 4.0rem; line-height: 1.2; letter-spacing: -.1rem; }
+h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: .08rem; }
+p { margin-top: 0; }
+a { color: #1EAEDB; }
+a:hover { color: #0FA0CE; }
+ul { list-style: disc inside; padding-left: 0; margin-top: 0; }
+li { margin-bottom: 1rem; }
+hr { border: 0; border-top: 1px solid #eee; margin: 2rem 0; }
+img { max-width: 100%; }
+b, strong { font-weight: 600; }
 
+/* Grid */
 .container {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 20px 20px 40px;
-}
-
-/* Name */
-.name {
-  text-align: center;
-  padding: 20px 0 10px;
-}
-.name h1 {
-  font-size: 28px;
-  font-weight: normal;
-  margin: 0;
-}
-
-/* Top links */
-.top-links {
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 20px;
-}
-.top-links a { margin: 0 2px; }
-.top-links .sep { color: #888; margin: 0 4px; }
-
-/* Bio table */
-.bio-table {
+  position: relative;
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
-.bio-table td { vertical-align: top; padding: 0; }
-.bio-text { padding-right: 30px; }
-.bio-text p {
-  font-size: 15px;
-  text-align: justify;
-  margin: 0 0 10px;
-}
-.bio-photo {
-  text-align: center;
-  width: 220px;
-}
-.bio-photo img {
-  width: 200px;
-  border-radius: 50%;
+.row { display: flex; flex-wrap: wrap; }
+.row::after { content: ""; display: table; clear: both; }
+.three.columns { width: 22%; }
+.nine.columns { width: 74%; margin-left: 4%; }
+.twelve.columns { width: 100%; }
+
+@media (max-width: 550px) {
+  .three.columns, .nine.columns, .twelve.columns {
+    width: 100%;
+    margin-left: 0;
+  }
+  .three.columns { margin-bottom: 2rem; text-align: center; }
 }
 
-/* Education inline */
-.edu-list {
-  font-size: 15px;
-  margin: 8px 0 0;
-  padding-left: 18px;
+/* Header */
+.header {
+  margin-top: 5rem;
+  margin-bottom: 6rem;
+  text-align: left;
 }
-.edu-list li {
-  margin-bottom: 4px;
-}
-.edu-list .thesis {
-  font-size: 13px;
-  color: #666;
-  font-style: italic;
-}
-
-/* Section heading */
-.section-heading {
-  text-align: center;
+.main-description h1 { margin-bottom: 0; }
+.main-description p { margin-bottom: 0; }
+.main-description .fa {
   font-size: 22px;
-  font-weight: normal;
-  margin: 30px 0 15px;
-  padding-top: 10px;
+  margin-top: 5px;
+  margin-right: 8px;
+  color: #222;
+  cursor: pointer;
+}
+.main-description .fa:hover { color: #1EAEDB; }
+
+/* Navbar */
+.navbar {
+  display: none;
+  width: 100%;
+  height: 6.5rem;
+  background: #fff;
+  z-index: 99;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.navbar-spacer { display: none; }
+.navbar-list {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+.navbar-item {
+  float: left;
+  margin-bottom: 0;
+}
+.navbar-link {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  margin-right: 35px;
+  text-decoration: none;
+  line-height: 6.5rem;
+  color: #222;
+}
+.navbar-link:hover { color: #1EAEDB; text-decoration: none; }
+
+@media (min-width: 750px) {
+  .navbar, .navbar-spacer { display: block; }
+  .navbar-spacer { height: 6.5rem; display: none; }
+  .has-docked-nav .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .has-docked-nav .navbar-spacer { display: block; }
+  .has-docked-nav .navbar > .container { width: 80%; }
 }
 
-.sep-line {
-  border: 0;
-  border-top: 1px solid #ddd;
-  margin: 5px 0;
+/* Sections */
+.docs-section {
+  border-top: 1px solid #eee;
+  padding: 4rem 0;
+  margin-bottom: 0;
+}
+.docs-section h4 {
+  letter-spacing: .1rem;
 }
 
-/* Research Interests */
-.interests {
-  text-align: center;
-  font-size: 15px;
-  margin: 10px 0;
+/* Paper / Publication */
+.paper {
+  margin-bottom: 20px;
+  line-height: 1.2;
 }
+.paper p { margin-bottom: 2px; }
+.paper-buttons { margin-top: 2px; }
+.paper .button {
+  display: inline-block;
+  height: 20px;
+  padding: 0 5px;
+  font-weight: 100;
+  line-height: 20px;
+  margin-bottom: 0;
+  text-transform: none;
+  font-size: 1.2rem;
+  color: #1EAEDB;
+  text-decoration: none;
+  border: 1px solid #1EAEDB;
+  border-radius: 4px;
+}
+.paper .button:hover {
+  color: #fff;
+  background: #1EAEDB;
+  text-decoration: none;
+}
+
+/* Tabs */
+.tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+.tab-nav li {
+  margin-bottom: 0;
+}
+.tab-nav a {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #999;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s;
+}
+.tab-nav a:hover { color: #222; text-decoration: none; }
+.tab-nav a.active {
+  color: #222;
+  border-bottom-color: #1EAEDB;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Interests */
 .interests span {
   display: inline-block;
-  background: #f0f4ff;
-  color: #1772d0;
-  padding: 3px 12px;
+  font-size: 1.3rem;
+  background: #f4f7fb;
+  color: #1EAEDB;
+  padding: 2px 10px;
   border-radius: 4px;
-  margin: 3px 3px;
-  font-size: 14px;
-}
-
-/* Publication entry */
-.pub-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 14px;
-}
-.pub-table td { vertical-align: top; padding: 8px 0; }
-.pub-img-cell {
-  width: 180px;
-  padding-right: 20px;
-  text-align: center;
-}
-.pub-img-cell img {
-  width: 160px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-.pub-text-cell { padding: 4px 0; }
-.pub-title { font-size: 15px; margin-bottom: 4px; }
-.pub-title a { color: #1772d0; font-weight: 700; }
-.pub-authors { font-size: 14px; color: #333; margin-bottom: 2px; }
-.pub-venue { font-size: 14px; color: #333; margin-bottom: 4px; }
-.pub-links { font-size: 13px; }
-.pub-links a { margin-right: 8px; }
-
-/* Sub-heading */
-.sub-heading {
-  font-size: 17px;
-  font-weight: bold;
-  margin: 20px 0 10px;
-  color: #333;
-}
-
-/* Patent */
-.patent-item {
-  margin-bottom: 6px;
-  font-size: 14px;
-  color: #555;
-}
-.patent-item .patent-year { color: #888; }
-
-/* Awards */
-.award-item {
-  margin-bottom: 10px;
-  font-size: 15px;
-}
-.award-detail {
-  color: #666;
-  font-size: 14px;
+  margin: 3px 2px;
+  font-weight: 500;
 }
 
 /* Experience */
-.exp-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 16px;
+.exp-entry {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  align-items: flex-start;
 }
-.exp-table td { vertical-align: top; padding: 8px 0; }
-.exp-logo-cell {
-  width: 100px;
-  padding-right: 16px;
+.exp-logo {
+  flex-shrink: 0;
+  width: 80px;
   text-align: center;
 }
-.exp-logo-cell img {
-  width: 80px;
-}
-.exp-text-cell { padding: 4px 0; }
-.exp-role { font-size: 15px; font-weight: 700; }
-.exp-org { font-size: 15px; }
-.exp-date { font-size: 14px; color: #888; }
-.exp-desc {
-  font-size: 14px;
+.exp-logo img { width: 70px; border-radius: 4px; }
+.exp-detail { flex: 1; }
+.exp-detail h5 { margin-bottom: 0; font-weight: 600; font-size: 1.6rem; }
+.exp-detail p { margin-bottom: 2px; }
+.exp-detail .date { color: rgba(0,0,0,0.4); font-size: 1.3rem; }
+.exp-detail ul {
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
   color: #555;
-  margin-top: 4px;
-  padding-left: 0;
 }
-.exp-desc li {
-  margin-bottom: 3px;
+.exp-detail li { margin-bottom: 0.4rem; }
+
+@media (max-width: 550px) {
+  .exp-entry { flex-direction: column; gap: 1rem; }
+  .exp-logo { width: 100%; text-align: left; }
 }
 
-/* Projects */
-.proj-item {
-  margin-bottom: 14px;
-  font-size: 15px;
+/* Project */
+.proj-entry {
+  margin-bottom: 2rem;
 }
-.proj-item .proj-title { font-weight: 700; }
-.proj-item .proj-org { font-style: italic; color: #555; }
-.proj-item .proj-date { font-size: 14px; color: #888; }
-.proj-item .proj-desc {
-  font-size: 14px;
+.proj-entry h5 { margin-bottom: 0; font-weight: 600; font-size: 1.6rem; }
+.proj-entry .proj-meta {
+  color: rgba(0,0,0,0.5);
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+.proj-entry ul {
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
   color: #555;
-  margin-top: 3px;
-  padding-left: 18px;
 }
-.proj-item .proj-desc li { margin-bottom: 3px; }
+.proj-entry li { margin-bottom: 0.4rem; }
+
+/* Patent */
+.patent-item {
+  font-size: 1.4rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.patent-item .year { color: #999; }
+
+/* Award */
+.award-item {
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+.award-item .detail {
+  color: rgba(0,0,0,0.5);
+  font-size: 1.3rem;
+}
 
 /* Footer */
 .footer {
   text-align: center;
-  font-size: 13px;
-  color: #999;
-  margin-top: 30px;
-  padding-top: 15px;
+  color: rgba(0,0,0,0.4);
   border-top: 1px solid #eee;
+  padding: 15px 0 40px 0;
+  margin-bottom: 0;
+  font-size: 1.2rem;
 }
-
-/* Responsive */
-@media (max-width: 640px) {
-  .bio-table, .bio-table tbody, .bio-table tr, .bio-table td,
-  .pub-table, .pub-table tbody, .pub-table tr, .pub-table td,
-  .exp-table, .exp-table tbody, .exp-table tr, .exp-table td {
-    display: block;
-    width: 100%;
-  }
-  .bio-photo { width: 100%; margin-bottom: 15px; }
-  .bio-text { padding-right: 0; }
-  .pub-img-cell { width: 100%; padding-right: 0; margin-bottom: 8px; }
-  .exp-logo-cell { width: 100%; padding-right: 0; margin-bottom: 8px; }
-}
+.footer a { color: rgba(0,0,0,0.5); }
 </style>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- Name -->
-  <div class="name">
-    <h1>Jaesin Ahn</h1>
-  </div>
-
-  <!-- Top links -->
-  <div class="top-links">
-    <a href="mailto:ajs0420@knu.ac.kr">Email</a>
-    <span class="sep">/</span>
-    <a href="data/CV_JaesinAhn.pdf">CV</a>
-    <span class="sep">/</span>
-    <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
-    <span class="sep">/</span>
-    <a href="https://github.com/amoeba04" target="_blank">GitHub</a>
-  </div>
-
-  <!-- ============ ABOUT ============ -->
-  <table class="bio-table">
-    <tr>
-      <td class="bio-text">
+  <!-- ========== HEADER ========== -->
+  <section class="header">
+    <div class="row">
+      <div class="three columns">
+        <a href="/"><img class="u-max-full-width" src="images/profile.jpg" style="border-radius: 50%;"></a>
+      </div>
+      <div class="nine columns main-description">
+        <h1>Jaesin Ahn</h1>
+        <p>Ph.D. Candidate, Kyungpook National University</p>
+        <p>ajs0420 [AT] knu.ac.kr</p>
         <p>
-          I am a Ph.D. candidate in the <a href="https://ai.knu.ac.kr" target="_blank">Department of Artificial Intelligence</a> at <a href="https://www.knu.ac.kr" target="_blank">Kyungpook National University</a>, advised by Prof. <a href="#">Heechul Jung</a>.
+          <span onclick="window.open('mailto:ajs0420@knu.ac.kr')" style="cursor:pointer"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+          <span onclick="window.open('https://github.com/amoeba04')" style="cursor:pointer"><i class="fa fa-github" aria-hidden="true"></i></span>
+          <span onclick="window.open('https://scholar.google.com/')" style="cursor:pointer"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+          <span onclick="window.open('data/CV_JaesinAhn.pdf')" style="cursor:pointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
         </p>
-        <p>
-          My research focuses on understanding the internal mechanisms of AI systems. I work on mitigating harmful content generation, mechanistic interpretability of large language models, and machine unlearning for privacy. I believe that for AI to be truly accountable in high-stakes domains, we must understand their internal processes &mdash; not just their outputs.
-        </p>
-        <p>
-          Previously, I was a visiting researcher at <a href="https://www.mskcc.org/" target="_blank">Memorial Sloan Kettering Cancer Center</a> in New York, where I developed transformer-based methods for MRI reconstruction.
-        </p>
-        <ul class="edu-list">
-          <li><strong>Ph.D.</strong> in Artificial Intelligence, Kyungpook National University, 2021&ndash;2026 (Expected)
-            <br><span class="thesis">Thesis: Refining Embeddings in Transformers: Image Classification, MRI Reconstruction, and Safe Image Generation</span>
-          </li>
-          <li><strong>M.S.</strong> in Electronic & Electrical Engineering, Kyungpook National University, 2019&ndash;2021
-            <br><span class="thesis">Thesis: Neighborhood Skip-StyleGAN for Generating 3D Hand Bone Complex from a Single X-ray Image</span>
-          </li>
-          <li><strong>B.S.</strong> in Electronics Engineering, Kyungpook National University, 2013&ndash;2019</li>
-        </ul>
-      </td>
-      <td class="bio-photo">
-        <img src="images/profile.jpg" alt="Jaesin Ahn">
-      </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+  </section>
 
-  <!-- ============ RESEARCH INTERESTS ============ -->
-  <h2 class="section-heading">Research Interests</h2>
-  <hr class="sep-line">
-  <div class="interests">
-    <span>AI Safety</span>
-    <span>Trustworthy AI</span>
-    <span>Generative AI</span>
-    <span>Machine Unlearning</span>
-    <span>Computer Vision</span>
-    <span>Mechanistic Interpretability</span>
+  <div class="navbar-spacer"></div>
+  <nav class="navbar">
+    <div class="container">
+      <ul class="navbar-list">
+        <li class="navbar-item"><a class="navbar-link" href="#bio">Bio</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#interests">Interests</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#publications">Publications</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#awards">Awards</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#experience">Experience</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== BIO ========== -->
+  <div class="docs-section" id="bio">
+    <h4>Bio</h4>
+    <p>
+      I am a Ph.D. candidate in the <a href="https://ai.knu.ac.kr" target="_blank">Department of Artificial Intelligence</a> at <a href="https://www.knu.ac.kr" target="_blank">Kyungpook National University</a>, advised by Prof. <a href="#">Heechul Jung</a>.
+    </p>
+    <p>
+      My research focuses on understanding the internal mechanisms of AI systems. I work on mitigating harmful content generation, mechanistic interpretability of large language models, and machine unlearning for privacy. I believe that for AI to be truly accountable in high-stakes domains, we must understand their internal processes &mdash; not just their outputs.
+    </p>
+    <p>
+      Previously, I was a visiting researcher at <a href="https://www.mskcc.org/" target="_blank">Memorial Sloan Kettering Cancer Center</a> in New York, where I developed transformer-based methods for MRI reconstruction.
+    </p>
+
+    <h5 style="margin-top:2rem; margin-bottom:1rem; font-weight:600;">Education</h5>
+    <ul>
+      <li><strong>Ph.D.</strong> in Artificial Intelligence, Kyungpook National University, 2021&ndash;2026 (Expected)
+        <br><span style="font-size:1.3rem; color:rgba(0,0,0,0.5); font-style:italic;">Thesis: Refining Embeddings in Transformers: Image Classification, MRI Reconstruction, and Safe Image Generation</span>
+      </li>
+      <li><strong>M.S.</strong> in Electronic &amp; Electrical Engineering, Kyungpook National University, 2019&ndash;2021
+        <br><span style="font-size:1.3rem; color:rgba(0,0,0,0.5); font-style:italic;">Thesis: Neighborhood Skip-StyleGAN for Generating 3D Hand Bone Complex from a Single X-ray Image</span>
+      </li>
+      <li><strong>B.S.</strong> in Electronics Engineering, Kyungpook National University, 2013&ndash;2019</li>
+    </ul>
   </div>
 
-  <!-- ============ PUBLICATIONS ============ -->
-  <h2 class="section-heading">Publications</h2>
-  <hr class="sep-line">
-
-  <p class="sub-heading">Conference Papers</p>
-
-  <table class="pub-table">
-    <tr>
-      <td class="pub-img-cell"><img src="images/des.png" alt="DES"></td>
-      <td class="pub-text-cell">
-        <div class="pub-title"><a href="https://github.com/amoeba04/des">Mitigating Sexual Content Generation via Embedding Distortion in Text-conditioned Diffusion Models</a></div>
-        <div class="pub-authors"><strong>Jaesin Ahn</strong>, Heechul Jung</div>
-        <div class="pub-venue"><em>NeurIPS</em>, 2025</div>
-        <div class="pub-links"><a href="https://github.com/amoeba04/des">code</a></div>
-      </td>
-    </tr>
-  </table>
-
-  <table class="pub-table">
-    <tr>
-      <td class="pub-img-cell"><img src="images/skipstylegan.png" alt="Skip-StyleGAN"></td>
-      <td class="pub-text-cell">
-        <div class="pub-title"><a href="#">Skip-StyleGAN: Skip-Connected Generative Adversarial Networks for Generating 3D Rendered Image of Hand Bone Complex</a></div>
-        <div class="pub-authors"><strong>Jaesin Ahn</strong>, Hyun-Joo Lee, Inchul Choi, Minho Lee</div>
-        <div class="pub-venue"><em>MICCAI</em>, 2020</div>
-      </td>
-    </tr>
-  </table>
-
-  <table class="pub-table">
-    <tr>
-      <td class="pub-img-cell"><img src="images/siamese.png" alt="Siamese U-Net"></td>
-      <td class="pub-text-cell">
-        <div class="pub-title"><a href="#">Siamese U-Net with Healthy Template for Accurate Segmentation of Intracranial Hemorrhage</a></div>
-        <div class="pub-authors">Doyoung Kwon, <strong>Jaesin Ahn</strong>, Jaeil Kim, Inchul Choi, Sungmoon Jeong, Young-Sup Lee, Jaechan Park, Minho Lee</div>
-        <div class="pub-venue"><em>MICCAI</em>, 2019</div>
-      </td>
-    </tr>
-  </table>
-
-  <p class="sub-heading">Journal Papers</p>
-
-  <table class="pub-table">
-    <tr>
-      <td class="pub-img-cell"><img src="images/sach.png" alt="SACH"></td>
-      <td class="pub-text-cell">
-        <div class="pub-title"><a href="#">A Self-Attention Classifier Head for Improved Image Classification and Interpretability of ViT</a></div>
-        <div class="pub-authors"><strong>Jaesin Ahn</strong>, Heechul Jung</div>
-        <div class="pub-venue"><em>Electronics Letters</em>, vol. 61, no. 1, 2025</div>
-      </td>
-    </tr>
-  </table>
-
-  <table class="pub-table">
-    <tr>
-      <td class="pub-img-cell"><img src="images/gdot.png" alt="GDoT"></td>
-      <td class="pub-text-cell">
-        <div class="pub-title"><a href="#">GDoT: A Gated Dual Domain Transformer for Enhanced MRI Off-Resonance Correction</a></div>
-        <div class="pub-authors"><strong>Jaesin Ahn</strong>, Heechul Jung</div>
-        <div class="pub-venue"><em>Neurocomputing</em>, 129918, 2025</div>
-      </td>
-    </tr>
-  </table>
-
-  <table class="pub-table">
-    <tr>
-      <td class="pub-img-cell"><img src="images/xcit.png" alt="XCiT"></td>
-      <td class="pub-text-cell">
-        <div class="pub-title"><a href="#">Redesigning Embedding Layers for Queries, Keys, and Values in Cross-Covariance Image Transformers</a></div>
-        <div class="pub-authors"><strong>Jaesin Ahn</strong>, Jiuk Hong, Jeongwoo Ju, Heechul Jung</div>
-        <div class="pub-venue"><em>Mathematics</em>, vol. 11, no. 8, p. 1933, 2023</div>
-      </td>
-    </tr>
-  </table>
-
-  <p class="sub-heading">Patents</p>
-
-  <div class="patent-item"><span class="patent-year">2025</span> &mdash; Mechanistic Interpretability-based Backdoor Detection and Neutralization for Large Language Models</div>
-  <div class="patent-item"><span class="patent-year">2025</span> &mdash; Image Classification Apparatus with Attention-based Classifier Head</div>
-  <div class="patent-item"><span class="patent-year">2025</span> &mdash; Apparatus for Content Generation and Learning Method Thereof</div>
-  <div class="patent-item"><span class="patent-year">2025</span> &mdash; Incremental Learning Device and Incremental Learning Method</div>
-  <div class="patent-item"><span class="patent-year">2025</span> &mdash; Apparatus and Method for Restoring 3D MRI with Blurring Removed</div>
-  <div class="patent-item"><span class="patent-year">2023</span> &mdash; Query, Key, Value Embedding Technique Using Non-linearity and Shared Features</div>
-  <div class="patent-item"><span class="patent-year">2021</span> &mdash; Method for Generating Rotated Hand Bone 2D Projection Image (Granted)</div>
-
-  <!-- ============ CHALLENGES & AWARDS ============ -->
-  <h2 class="section-heading">Challenges &amp; Awards</h2>
-  <hr class="sep-line">
-
-  <div class="award-item">
-    <strong>7th place (Top 1.11%)</strong>, 2025 AI CHAMPION Challenge &mdash; Recipient of the IITP President's Award
-    <br><span class="award-detail">Hosted by Ministry of Science and ICT (MSIT), among 630 teams</span>
+  <!-- ========== RESEARCH INTERESTS ========== -->
+  <div class="docs-section" id="interests">
+    <h4>Research Interests</h4>
+    <div class="interests">
+      <span>AI Safety</span>
+      <span>Trustworthy AI</span>
+      <span>Generative AI</span>
+      <span>Machine Unlearning</span>
+      <span>Computer Vision</span>
+      <span>Mechanistic Interpretability</span>
+    </div>
   </div>
 
-  <div class="award-item">
-    <strong>8th place (Top 0.6%)</strong>, 2023 NeurIPS Machine Unlearning Challenge
-    <br><span class="award-detail">Organized by Google DeepMind</span>
+  <!-- ========== PUBLICATIONS ========== -->
+  <div class="docs-section" id="publications">
+    <h4>Publications</h4>
+
+    <ul class="tab-nav">
+      <li><a href="#" class="active" data-tab="tab-all">All</a></li>
+      <li><a href="#" data-tab="tab-conf">Conference</a></li>
+      <li><a href="#" data-tab="tab-journal">Journal</a></li>
+      <li><a href="#" data-tab="tab-patent">Patent</a></li>
+    </ul>
+
+    <!-- All -->
+    <div class="tab-content active" id="tab-all">
+
+      <div class="paper">
+        <p class="title"><b>Mitigating Sexual Content Generation via Embedding Distortion in Text-conditioned Diffusion Models</b></p>
+        <p><strong>Jaesin Ahn</strong>, Heechul Jung</p>
+        <p><em>NeurIPS</em>, 2025</p>
+        <div class="paper-buttons">
+          <a class="button" href="https://github.com/amoeba04/des" target="_blank">code</a>
+        </div>
+      </div>
+
+      <div class="paper">
+        <p class="title"><b>A Self-Attention Classifier Head for Improved Image Classification and Interpretability of ViT</b></p>
+        <p><strong>Jaesin Ahn</strong>, Heechul Jung</p>
+        <p><em>Electronics Letters</em>, vol. 61, no. 1, 2025</p>
+      </div>
+
+      <div class="paper">
+        <p class="title"><b>GDoT: A Gated Dual Domain Transformer for Enhanced MRI Off-Resonance Correction</b></p>
+        <p><strong>Jaesin Ahn</strong>, Heechul Jung</p>
+        <p><em>Neurocomputing</em>, 129918, 2025</p>
+      </div>
+
+      <div class="paper">
+        <p class="title"><b>Redesigning Embedding Layers for Queries, Keys, and Values in Cross-Covariance Image Transformers</b></p>
+        <p><strong>Jaesin Ahn</strong>, Jiuk Hong, Jeongwoo Ju, Heechul Jung</p>
+        <p><em>Mathematics</em>, vol. 11, no. 8, p. 1933, 2023</p>
+      </div>
+
+      <div class="paper">
+        <p class="title"><b>Skip-StyleGAN: Skip-Connected Generative Adversarial Networks for Generating 3D Rendered Image of Hand Bone Complex</b></p>
+        <p><strong>Jaesin Ahn</strong>, Hyun-Joo Lee, Inchul Choi, Minho Lee</p>
+        <p><em>MICCAI</em>, 2020</p>
+      </div>
+
+      <div class="paper">
+        <p class="title"><b>Siamese U-Net with Healthy Template for Accurate Segmentation of Intracranial Hemorrhage</b></p>
+        <p>Doyoung Kwon, <strong>Jaesin Ahn</strong>, Jaeil Kim, Inchul Choi, Sungmoon Jeong, Young-Sup Lee, Jaechan Park, Minho Lee</p>
+        <p><em>MICCAI</em>, 2019</p>
+      </div>
+
+      <hr style="margin: 2rem 0;">
+      <h5 style="font-weight:600; margin-bottom:1.5rem;">Patents</h5>
+
+      <div class="patent-item"><span class="year">2025</span> &mdash; Mechanistic Interpretability-based Backdoor Detection and Neutralization for Large Language Models</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Image Classification Apparatus with Attention-based Classifier Head</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Apparatus for Content Generation and Learning Method Thereof</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Incremental Learning Device and Incremental Learning Method</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Apparatus and Method for Restoring 3D MRI with Blurring Removed</div>
+      <div class="patent-item"><span class="year">2023</span> &mdash; Query, Key, Value Embedding Technique Using Non-linearity and Shared Features</div>
+      <div class="patent-item"><span class="year">2021</span> &mdash; Method for Generating Rotated Hand Bone 2D Projection Image (Granted)</div>
+
+    </div>
+
+    <!-- Conference -->
+    <div class="tab-content" id="tab-conf">
+      <div class="paper">
+        <p class="title"><b>Mitigating Sexual Content Generation via Embedding Distortion in Text-conditioned Diffusion Models</b></p>
+        <p><strong>Jaesin Ahn</strong>, Heechul Jung</p>
+        <p><em>NeurIPS</em>, 2025</p>
+        <div class="paper-buttons"><a class="button" href="https://github.com/amoeba04/des" target="_blank">code</a></div>
+      </div>
+      <div class="paper">
+        <p class="title"><b>Skip-StyleGAN: Skip-Connected Generative Adversarial Networks for Generating 3D Rendered Image of Hand Bone Complex</b></p>
+        <p><strong>Jaesin Ahn</strong>, Hyun-Joo Lee, Inchul Choi, Minho Lee</p>
+        <p><em>MICCAI</em>, 2020</p>
+      </div>
+      <div class="paper">
+        <p class="title"><b>Siamese U-Net with Healthy Template for Accurate Segmentation of Intracranial Hemorrhage</b></p>
+        <p>Doyoung Kwon, <strong>Jaesin Ahn</strong>, Jaeil Kim, Inchul Choi, Sungmoon Jeong, Young-Sup Lee, Jaechan Park, Minho Lee</p>
+        <p><em>MICCAI</em>, 2019</p>
+      </div>
+    </div>
+
+    <!-- Journal -->
+    <div class="tab-content" id="tab-journal">
+      <div class="paper">
+        <p class="title"><b>A Self-Attention Classifier Head for Improved Image Classification and Interpretability of ViT</b></p>
+        <p><strong>Jaesin Ahn</strong>, Heechul Jung</p>
+        <p><em>Electronics Letters</em>, vol. 61, no. 1, 2025</p>
+      </div>
+      <div class="paper">
+        <p class="title"><b>GDoT: A Gated Dual Domain Transformer for Enhanced MRI Off-Resonance Correction</b></p>
+        <p><strong>Jaesin Ahn</strong>, Heechul Jung</p>
+        <p><em>Neurocomputing</em>, 129918, 2025</p>
+      </div>
+      <div class="paper">
+        <p class="title"><b>Redesigning Embedding Layers for Queries, Keys, and Values in Cross-Covariance Image Transformers</b></p>
+        <p><strong>Jaesin Ahn</strong>, Jiuk Hong, Jeongwoo Ju, Heechul Jung</p>
+        <p><em>Mathematics</em>, vol. 11, no. 8, p. 1933, 2023</p>
+      </div>
+    </div>
+
+    <!-- Patent -->
+    <div class="tab-content" id="tab-patent">
+      <div class="patent-item"><span class="year">2025</span> &mdash; Mechanistic Interpretability-based Backdoor Detection and Neutralization for Large Language Models</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Image Classification Apparatus with Attention-based Classifier Head</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Apparatus for Content Generation and Learning Method Thereof</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Incremental Learning Device and Incremental Learning Method</div>
+      <div class="patent-item"><span class="year">2025</span> &mdash; Apparatus and Method for Restoring 3D MRI with Blurring Removed</div>
+      <div class="patent-item"><span class="year">2023</span> &mdash; Query, Key, Value Embedding Technique Using Non-linearity and Shared Features</div>
+      <div class="patent-item"><span class="year">2021</span> &mdash; Method for Generating Rotated Hand Bone 2D Projection Image (Granted)</div>
+    </div>
+
   </div>
 
-  <!-- ============ EXPERIENCE ============ -->
-  <h2 class="section-heading">Experience</h2>
-  <hr class="sep-line">
+  <!-- ========== CHALLENGES & AWARDS ========== -->
+  <div class="docs-section" id="awards">
+    <h4>Challenges &amp; Awards</h4>
 
-  <table class="exp-table">
-    <tr>
-      <td class="exp-logo-cell">
+    <div class="award-item">
+      <strong>7th place (Top 1.11%)</strong>, 2025 AI CHAMPION Challenge &mdash; Recipient of the IITP President's Award
+      <br><span class="detail">Hosted by Ministry of Science and ICT (MSIT), among 630 teams</span>
+    </div>
+
+    <div class="award-item">
+      <strong>8th place (Top 0.6%)</strong>, 2023 NeurIPS Machine Unlearning Challenge
+      <br><span class="detail">Organized by Google DeepMind</span>
+    </div>
+  </div>
+
+  <!-- ========== EXPERIENCE ========== -->
+  <div class="docs-section" id="experience">
+    <h4>Experience</h4>
+
+    <div class="exp-entry">
+      <div class="exp-logo">
         <img src="images/mskcc.png" alt="MSKCC">
-      </td>
-      <td class="exp-text-cell">
-        <div class="exp-role">Graduate Research Assistant</div>
-        <div class="exp-org"><a href="https://www.mskcc.org/" target="_blank">Memorial Sloan Kettering Cancer Center</a>, New York, USA</div>
-        <div class="exp-date">Apr. 2022 &ndash; Mar. 2023</div>
-        <ul class="exp-desc">
+      </div>
+      <div class="exp-detail">
+        <h5>Graduate Research Assistant</h5>
+        <p><a href="https://www.mskcc.org/" target="_blank">Memorial Sloan Kettering Cancer Center</a>, New York, USA</p>
+        <p class="date">Apr. 2022 &ndash; Mar. 2023</p>
+        <ul>
           <li>Supported by IITP grant: Research on Unsupervised Domain Adaptation Technology Based on Deep Learning</li>
           <li>Developed a transformer-based correction network to mitigate off-resonance artifacts caused by accelerated MRI scanning with non-Cartesian sparse trajectories</li>
           <li>This research led to the publication of the "GDoT" paper in <em>Neurocomputing</em></li>
         </ul>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ============ PROJECTS ============ -->
-  <h2 class="section-heading">Projects</h2>
-  <hr class="sep-line">
-
-  <div class="proj-item">
-    <span class="proj-title">Developing the Next-Generation General AI with Reliability, Ethics, and Adaptability</span>
-    <br><span class="proj-org">IITP, Korea</span> <span class="proj-date">(Apr. 2025 &ndash; Present)</span>
-    <ul class="proj-desc">
-      <li>Designing a reliable AGI architecture by analyzing stability issues in multi-agent interactions and exploring model routing strategies for efficient inference</li>
-      <li>Enhancing model capabilities and adaptability across diverse specialized domains, including medical and mathematical reasoning</li>
-    </ul>
+      </div>
+    </div>
   </div>
 
-  <div class="proj-item">
-    <span class="proj-title">Evaluation of Privacy Risk Mitigation Technologies for Generative AI</span>
-    <br><span class="proj-org">Personal Information Protection Commission, Korea</span> <span class="proj-date">(May 2024 &ndash; Oct. 2024)</span>
-    <ul class="proj-desc">
-      <li>Analyzed privacy leakage risks specifically in Korean Large Language Models (LLMs) and evaluated the effectiveness of mitigation strategies</li>
-      <li>Verified the performance of privacy-preserving techniques, including deduplication, filtering, differential privacy, and machine unlearning</li>
-    </ul>
-  </div>
+  <!-- ========== PROJECTS ========== -->
+  <div class="docs-section" id="projects">
+    <h4>Projects</h4>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>Template inspired by <a href="https://jonbarron.info/">Jon Barron</a>. &copy; 2025 Jaesin Ahn.</p>
+    <div class="proj-entry">
+      <h5>Developing the Next-Generation General AI with Reliability, Ethics, and Adaptability</h5>
+      <p class="proj-meta">IITP, Korea &middot; Apr. 2025 &ndash; Present</p>
+      <ul>
+        <li>Designing a reliable AGI architecture by analyzing stability issues in multi-agent interactions and exploring model routing strategies for efficient inference</li>
+        <li>Enhancing model capabilities and adaptability across diverse specialized domains, including medical and mathematical reasoning</li>
+      </ul>
+    </div>
+
+    <div class="proj-entry">
+      <h5>Evaluation of Privacy Risk Mitigation Technologies for Generative AI</h5>
+      <p class="proj-meta">Personal Information Protection Commission, Korea &middot; May 2024 &ndash; Oct. 2024</p>
+      <ul>
+        <li>Analyzed privacy leakage risks specifically in Korean Large Language Models (LLMs) and evaluated the effectiveness of mitigation strategies</li>
+        <li>Verified the performance of privacy-preserving techniques, including deduplication, filtering, differential privacy, and machine unlearning</li>
+      </ul>
+    </div>
   </div>
 
 </div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Template inspired by <a href="https://thashim.github.io/">Tatsunori Hashimoto</a>.</p>
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-nav a').forEach(function(tab) {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.tab-nav a').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+    this.classList.add('active');
+    document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+  });
+});
+
+// Navbar docking on scroll
+(function() {
+  var navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  var navbarOffset = navbar.offsetTop;
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset >= navbarOffset) {
+      document.body.classList.add('has-docked-nav');
+    } else {
+      document.body.classList.remove('has-docked-nav');
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
